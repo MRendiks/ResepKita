@@ -1,0 +1,218 @@
+{% include '/layout/_top.html' %}
+
+<section class="section">
+    <div class="section-header d-flex justify-content-between">
+      <h1>Rekomendasi Resep Makanan</h1>
+    </div>
+    {% if ext %}
+    <br>
+    <br>
+    <div class="alert alert-danger" role="alert">
+        {{ext}}
+    </div>
+      {% endif %}
+    <div class="column">        
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <form method="POST" enctype="multipart/form-data" action=" {{url_for('req')}}">
+                        <table cellpadding="8" class="w-100">
+                          <tr>
+                            <td>
+                                <input type="file" class="form-control" name="query_img" accept="image/png, image/jpeg, image/jpg"><br>
+                            </form>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input class="btn btn-primary" type="submit" name="proses" value="Submit">
+                              <input class="btn btn-danger" type="reset" name="batal" value="Bersihkan">
+                            </td>
+                          </tr>
+                        </table>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                      {% if data %}
+                        <img src="data:image/jpeg;base64,{{ query_path  }}" width="200px">
+                        
+                        {% endif %}
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <div class="section-header d-flex justify-content-between">
+          <h1>Proses CNN</h1>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-hover table-striped w-100" id="table-1">
+                            <thead>
+                              <tr class="text-center">
+                                <th>No</th>
+                                <th>Keterangan</th>
+                                <th>Hasil</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>Array gambar untuk diinputkan ke model</td>
+                                  <td>{{tensor}}</td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>Hasil setelah dimasukkan model CNN (probabilitas masing-masing kelas) </td>
+                                  <td>{{pred}}</td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>Di urutkan dari probabilitas yang terbesar sesuai index hasil CNN</td>
+                                  <td>{{sort}}</td>
+                                </tr>
+                                <tr>
+                                  <td>4</td>
+                                  <td>Berikut index dan nama kelas</td>
+                                  <td>{{dictionary}}</td>
+                                </tr>
+                                <tr>
+                                  <td>5</td>
+                                  <td>Setelah diurutkan kelas yang memiliki probabilitas tertinggi pada index</td>
+                                  <td>{{category}}</td>
+                                </tr>
+                                <tr>
+                                  <td>6</td>
+                                  <td>Index {{ category }} sesuai nama kelas yaitu</td>
+                                  <td>{{probability}}</td>
+                                </tr>
+                                
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <div class="section-header d-flex justify-content-between">
+          <h1>Rekomendasi Resep Makanan</h1>
+          
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped w-100" id="table-1">
+                        <thead>
+                          <tr class="text-center">
+                            <th>No</th>
+                            <th>Nama Resep</th>
+                            <th>Nilai Cosine</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% if data %}
+                          {% for item in data: %}
+                            <tr>
+                              <td> {{loop.index}} </td>
+                              <td>{{item[0]}} </td>
+                              <td>{{item[1]}} </td>
+                            
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    {% endif %} 
+                </div>
+            </div>
+        </div> 
+      </div>
+        
+        <div class="section-header d-flex justify-content-between">
+          <h1>Perhitungan Cosine Similarity</h1>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Rumus</h4>
+                </div>
+                <div class="card-body">
+                  <img src="{{url_for('static', filename='assets/img/rumus cosine.jpg')}}" alt="logo" width="300">
+                </div>
+            </div>
+        </div> 
+      </div>
+        
+
+        <div class="row">
+          {% if values %}
+          <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                  <h4>Perhitungan Cosing Similarity untuk resep {{values['nama_resep']}} </h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-striped w-100" id="table-1">
+                      <thead>
+                        <tr class="text-center">
+                          <th>No</th>
+                          <th>Keterangan</th>
+                          <th>Hasil</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Mendefinisikan data kedalam rumus cosine similarity</td>
+                            <td>{{values['X_list']}} . {{values['Y_list']}} / || {{values['X_list']}} || * || {{values['Y_list']}} || </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Melakukan perkalian matrix untuk pembilang</td>
+                            <td>{{values['dot']}} / || {{values['X_list']}} || * || {{values['Y_list']}} ||</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Melakukan Normalisasi data pada matriks penyebut</td>
+                            <td>{{values['dot']}} / {{values['norm1']}} * {{values['norm2']}}</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Melakukan Perkalian pada data penyebut</td>
+                            <td>{{values['dot']}} / {{values['normal']}} </td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>Melakukan Pembagian</td>
+                            <td>{{values['cosine']}}  atau {{values['ubah']}}</td>
+                          </tr>
+
+                          
+                      </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>  
+    </div>
+    </div>
+</section>
+{% include '/layout/_bottom.html' %}  

@@ -1,0 +1,38 @@
+{% include '/layout/_top.html' %}
+
+<section class="section">
+    <div class="section-header d-flex justify-content-between">
+        <h1>Data User</h1>
+    </div>
+    <div class="column">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped w-100" id="table-1">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>No</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in data: %}
+                                    <tr>
+                                        <td> {{loop.index}} </td>
+                                        <td>{{item[1]}} </td>
+                                        <td>{{item[2]}} </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include '/layout/_bottom.html' %}  

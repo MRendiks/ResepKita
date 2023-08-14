@@ -1,0 +1,100 @@
+{% include '/layout/_top.html' %}
+
+<section class="section">
+    <div class="section-header d-flex justify-content-between">
+      <h1>Training Model Image Classification</h1>
+    </div>
+    <div class="column">        
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <form action=" {{url_for('config_cnn')}} " method="POST">
+                        <table cellpadding="8" class="w-100">
+                          <tr>
+                            <td>Epoch Pelatihan Model</td>
+                            <td><input class="form-control" type="number" name="epoch" value="{{EPOCH}}" disabled></td>
+                          </tr>
+                          <tr>
+                            <td>Ukuran Konvolusi Layer 1</td>
+                            <td><input class="form-control" type="number" name="conv1" value="{{conv1}}" disabled></td>
+                          </tr>
+                          <tr>
+                            <td>Ukuran Konvolusi Layer 2</td>
+                            <td><input class="form-control" type="number" name="conv2" value="{{conv2}}" disabled></td>
+                          </tr>
+                          <tr>
+                            <td>Ukuran Konvolusi Layer 3</td>
+                            <td><input class="form-control" type="number" name="conv3" value="{{conv3}}" disabled></td>
+                          </tr>
+                          <tr>
+                            <td>Learning Rate</td>
+                            <td><input class="form-control" type="number"  name="lr" value="{{lr}}" disabled></td>
+                          </tr>
+                          <tr>
+                            <td>Optimizer</td>
+                            <td>
+                                <input class="form-control" type="text" name="optimizer"  value="{{optimizer}}" disabled>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Best Accuracy</td>
+                            <td>
+                                <input class="form-control" type="text" name="best_accuracy"  value="{{best_accuracy}}" disabled>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Best Loss</td>
+                            <td>
+                                <input class="form-control" type="text" name="best_loss"  value="{{best_loss}}" disabled>
+                            </td>
+                          </tr>
+                        </table>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body" >
+                      {% if data %}
+                      <img src="{{url_for('static', filename='plot_image/model_plot.png')}}" width="470" height="470">
+                      {% endif%}
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <h4>Diagram Hasil Training Model : Error</h4>
+              </div>
+              <div class="card-body" >
+                {% if plot_data %}
+                <img src="data:image/png;base64,{{ plot_data }}" alt="Plot" width="400" height="400">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <h4>Diagram Hasil Training Model : Accuracy</h4>
+              </div>
+              <div class="card-body" >
+                {% if plot_data %}
+                <img src="data:image/png;base64,{{ plot_data2 }}" alt="Plot" width="400" height="400">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  var graph1 = {{ graph1JSON | safe }};
+  Plotly.plot("chart1", graph1, {})
+</script>
+{% include '/layout/_bottom.html' %}  

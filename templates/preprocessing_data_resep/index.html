@@ -1,0 +1,141 @@
+{% include '/layout/_top.html' %}
+
+<section class="section">
+    <div class="section-header d-flex justify-content-between">
+      <h1>Preprocessing Data Resep</h1>
+      <a href=" {{url_for('prepro_data_resep')}} " class="btn btn-primary">Mulai Proses</a>
+    </div>
+    <div class="column">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-primary">
+                <i class="far fa-user"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Total Data</h4>
+                </div>
+                <div class="card-body">
+                    {% if total_data %} {{total_data}}
+                        {% endif %} 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section-header d-flex justify-content-between">
+            <h1>Menghapus karakter ---</h1>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sebelum</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro1 %} {{prepro1}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sesudah</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro2 %} {{prepro2}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+        <div class="section-header d-flex justify-content-between">
+            <h1>Menghapus karakter ...</h1>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sebelum</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro2 %} {{prepro2}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sesudah</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro3 %} {{prepro3}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+        <div class="section-header d-flex justify-content-between">
+            <h1>Menghapus Emoji</h1>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sebelum</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro3 %} {{prepro3}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sesudah</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro4 %} {{prepro4}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="section-header d-flex justify-content-between">
+            <h1>Mengubah kata menjadi kata baku</h1>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sebelum</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro4 %} {{prepro4}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sesudah</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if prepro5 %} {{prepro5}}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+    </div>
+</section>
+{% include '/layout/_bottom.html' %}  

@@ -1,0 +1,52 @@
+<div class="main-sidebar sidebar-style-2">
+  <aside id="sidebar-wrapper">
+    <div class="sidebar-brand">
+      <a href="{{url_for('dashboard')}}">
+        <img src="{{url_for('static', filename='assets/img/logo_resepkita.png')}}" alt="logo" width="70">
+      </a>
+    </div>
+    <div class="sidebar-brand sidebar-brand-sm">
+      <a href="{{url_for('dashboard')}}">RK</a>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="menu-header">Dashboard</li>
+      <li><a class="nav-link" href="{{url_for('dashboard')}}"><i class="fas fa-fire"></i> <span>Home</span></a></li>
+      <li class="menu-header">Menu Data User</li>
+      <li class="dropdown">
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data User</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="{{url_for('list_user')}}">List</a></li>
+        </ul>
+      </li>
+      <li class="menu-header">Fitur Percobaan</li>
+      <li class="dropdown">
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Training Model</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href=" {{url_for('train_model_page')}} ">Train Model </a></li>
+        </ul>
+      </li>
+      <li class="menu-header">Menu Data Resep</li>
+      <li class="dropdown">
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Preprocessing Data Resep</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="{{url_for('preprocessing_data_resep')}}">Preprocessing</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Resep Makanan</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="{{url_for('list_resep')}}">List</a></li>
+        </ul>
+      </li>
+      
+      
+      <li class="menu-header">Fitur Utama</li>
+      <li class="dropdown">
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Rekomendasi Resep Makanan</span></a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href=" {{url_for('rekomendasi_resep')}} ">Rekomendasi Resep Image</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+</div>

@@ -1,0 +1,187 @@
+{% include '/layout/_top.html' %}
+
+<section class="section">
+    <div class="section-header d-flex justify-content-between">
+      <h1>Training Model Image Classification</h1>
+    </div>
+    <div class="row">
+      <div class="col-12">
+          <div class="card">
+              <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong>Kesalahan!</strong> Harap Isi Rasio dengan maximal rasio data training + testing = 100%
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                {% endif %}
+                <form action="{{url_for('load_train_model')}} " method="POST">
+                  <table cellpadding="8" class="w-100">
+                    <tr>
+                      <td>Rasio untuk Data Latih (%)</td>
+                      <td><input class="form-control" type="number" name="rasio_data_train"></td>
+                    </tr>
+                    <tr>
+                      <td>Rasio untuk Data Testing (%)</td>
+                      <td><input class="form-control" type="number" name="rasio_data_testing"></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <input class="btn btn-primary" type="submit" name="proses" value="Load Dataset">
+                        <input class="btn btn-danger" type="reset" name="batal" value="Bersihkan">
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="column">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-primary">
+                <i class="far fa-user"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Total Dataset</h4>
+                </div>
+                <div class="card-body">
+                    {% if total_dataset %} {{total_dataset}}
+                        {% endif %} 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-danger">
+                <i class="far fa-user"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Total Data Training</h4>
+                </div>
+                <div class="card-body">
+                  {% if train_data %} {{train_data}}
+                        {% endif %} 
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-info">
+                <i class="far fa-user"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Total Data Testing</h4>
+                </div>
+                <div class="card-body">
+                  {% if val_data %} {{val_data}}
+                  {% endif %} 
+                </div>
+              </div>
+            </div>  
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+              <div class="card-icon bg-warning">
+                <i class="far fa-user"></i>
+              </div>
+              <div class="card-wrap">
+                <div class="card-header">
+                  <h4>Rasio Dataset</h4>
+                </div>
+                <div class="card-body">
+                  {% if ratio %} {{ratio}}
+                  {% endif %} 
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div id="chart1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                      <form action=" {{url_for('config_cnn')}} " method="POST">
+                        <table cellpadding="8" class="w-100">
+                          <tr>
+                            <td>Epoch Pelatihan Model</td>
+                            <td><input class="form-control" type="number" name="epoch"></td>
+                          </tr>
+                          <tr>
+                            <td>Ukuran Konvolusi Layer 1</td>
+                            <td><input class="form-control" type="number" name="conv1"></td>
+                          </tr>
+                          <tr>
+                            <td>Ukuran Konvolusi Layer 2</td>
+                            <td><input class="form-control" type="number" name="conv2"></td>
+                          </tr>
+                          <tr>
+                            <td>Ukuran Konvolusi Layer 3</td>
+                            <td><input class="form-control" type="number" name="conv3"></td>
+                          </tr>
+                          <tr>
+                            <td>Learning Rate</td>
+                            <td><input class="form-control" type="number" step="0.0001" name="lr"></td>
+                          </tr>
+                          <tr>
+                            <td>Optimizer</td>
+                            <td>
+                              <select class="form-control" name="optimizer" id="optimizer" required>
+                                <option value="">--Pilih Optimizer--</option>
+                                <option value="Adam">Adam</option>
+                                <option value="RMSprop">RMSprop</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <button type="submit" class="btn btn-primary" id="btn_train">Train <span class="load loading"></span></button>
+                              
+                              <input class="btn btn-danger" type="reset" name="batal" value="Bersihkan">
+                            </td>
+                          </tr>
+                        </table>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+  const btns = document.getElementById("btn_train");
+  btns.forEach((items)=>{
+      items.addEventListener('click',(evt)=>{
+          evt.target.classList.add('activeLoading');
+      }) 
+  })
+</script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  var graph1 = {{ graph1JSON | safe }};
+  Plotly.plot("chart1", graph1, {})
+</script>
+{% include '/layout/_bottom.html' %}  

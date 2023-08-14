@@ -1,0 +1,227 @@
+{% include '/layout/_top.html' %}
+
+<section class="section">
+    <div class="section-header d-flex justify-content-between">
+      <h1>Rekomendasi Resep Makanan</h1>
+    </div>
+    <div class="column">        
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <form action=" {{url_for('cosine_similarity')}} " method="POST">
+                        <table cellpadding="8" class="w-100">
+                          <td>Bahan Sayuran 1</td>
+                            <td>
+                              <select class="form-control" name="bahan1" id="bahan1">
+                                <option value="">--Pilih Bahan Sayuran--</option>
+                                <option value="Bawang Merah">Bawang Merah</option>
+                                <option value="Bawang Putih">Bawang Putih</option>
+                                <option value="Bombai">Bombai</option>
+                                <option value="Cabai Hijau">Cabai Hijau</option>
+                                <option value="Cabai Merah">Cabai Merah</option>
+                                <option value="Jagung">Jagung</option>
+                                <option value="Jahe">Jahe</option>
+                                <option value="Kembang Kol">Kembang Kol</option>
+                                <option value="Kentang">Kentang</option>
+                                <option value="Kubis">Kubis</option>
+                                <option value="Terong">Terong</option>
+                                <option value="Timun">Timun</option>
+                                <option value="Tomat">Tomat</option>
+                                <option value="Wortel">Wortel</option>
+                              </select>
+                            </td>
+                          <tr>
+                            <td>Bahan Sayuran 2</td>
+                            <td>
+                              <select class="form-control" name="bahan2" id="bahan2">
+                                <option value="">--Pilih Bahan Sayuran--</option>
+                                <option value="Bawang Merah">Bawang Merah</option>
+                                <option value="Bawang Putih">Bawang Putih</option>
+                                <option value="Bombai">Bombai</option>
+                                <option value="Cabai Hijau">Cabai Hijau</option>
+                                <option value="Cabai Merah">Cabai Merah</option>
+                                <option value="Jagung">Jagung</option>
+                                <option value="Jahe">Jahe</option>
+                                <option value="Kembang Kol">Kembang Kol</option>
+                                <option value="Kentang">Kentang</option>
+                                <option value="Kubis">Kubis</option>
+                                <option value="Terong">Terong</option>
+                                <option value="Timun">Timun</option>
+                                <option value="Tomat">Tomat</option>
+                                <option value="Wortel">Wortel</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Bahan Sayuran 3</td>
+                            <td>
+                              <select class="form-control" name="bahan3" id="bahan3">
+                                <option value="">--Pilih Bahan Sayuran--</option>
+                                <option value="Bawang Merah">Bawang Merah</option>
+                                <option value="Bawang Putih">Bawang Putih</option>
+                                <option value="Bombai">Bombai</option>
+                                <option value="Cabai Hijau">Cabai Hijau</option>
+                                <option value="Cabai Merah">Cabai Merah</option>
+                                <option value="Jagung">Jagung</option>
+                                <option value="Jahe">Jahe</option>
+                                <option value="Kembang Kol">Kembang Kol</option>
+                                <option value="Kentang">Kentang</option>
+                                <option value="Kubis">Kubis</option>
+                                <option value="Terong">Terong</option>
+                                <option value="Timun">Timun</option>
+                                <option value="Tomat">Tomat</option>
+                                <option value="Wortel">Wortel</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Bahan Sayuran 4</td>
+                            <td>
+                              <select class="form-control" name="bahan4" id="bahan4">
+                                <option value="">--Pilih Bahan Sayuran--</option>
+                                <option value="Bawang Merah">Bawang Merah</option>
+                                <option value="Bawang Putih">Bawang Putih</option>
+                                <option value="Bombai">Bombai</option>
+                                <option value="Cabai Hijau">Cabai Hijau</option>
+                                <option value="Cabai Merah">Cabai Merah</option>
+                                <option value="Jagung">Jagung</option>
+                                <option value="Jahe">Jahe</option>
+                                <option value="Kembang Kol">Kembang Kol</option>
+                                <option value="Kentang">Kentang</option>
+                                <option value="Kubis">Kubis</option>
+                                <option value="Terong">Terong</option>
+                                <option value="Timun">Timun</option>
+                                <option value="Tomat">Tomat</option>
+                                <option value="Wortel">Wortel</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Bahan Sayuran 5</td>
+                            <td>
+                              <select class="form-control" name="bahan5" id="bahan5">
+                                <option value="">--Pilih Bahan Sayuran--</option>
+                                <option value="Bawang Merah">Bawang Merah</option>
+                                <option value="Bawang Putih">Bawang Putih</option>
+                                <option value="Bombai">Bombai</option>
+                                <option value="Cabai Hijau">Cabai Hijau</option>
+                                <option value="Cabai Merah">Cabai Merah</option>
+                                <option value="Jagung">Jagung</option>
+                                <option value="Jahe">Jahe</option>
+                                <option value="Kembang Kol">Kembang Kol</option>
+                                <option value="Kentang">Kentang</option>
+                                <option value="Kubis">Kubis</option>
+                                <option value="Terong">Terong</option>
+                                <option value="Timun">Timun</option>
+                                <option value="Tomat">Tomat</option>
+                                <option value="Wortel">Wortel</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Bahan Sayuran 6</td>
+                            <td>
+                              <select class="form-control" name="bahan6" id="bahan6" >
+                                <option value="">--Pilih Bahan Sayuran--</option>
+                                <option value="Bawang Merah">Bawang Merah</option>
+                                <option value="Bawang Putih">Bawang Putih</option>
+                                <option value="Bombai">Bombai</option>
+                                <option value="Cabai Hijau">Cabai Hijau</option>
+                                <option value="Cabai Merah">Cabai Merah</option>
+                                <option value="Jagung">Jagung</option>
+                                <option value="Jahe">Jahe</option>
+                                <option value="Kembang Kol">Kembang Kol</option>
+                                <option value="Kentang">Kentang</option>
+                                <option value="Kubis">Kubis</option>
+                                <option value="Terong">Terong</option>
+                                <option value="Timun">Timun</option>
+                                <option value="Tomat">Tomat</option>
+                                <option value="Wortel">Wortel</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input class="btn btn-primary" type="submit" name="proses" value="Hitung">
+                              <input class="btn btn-danger" type="reset" name="batal" value="Bersihkan">
+                            </td>
+                          </tr>
+                        </table>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                      {% if data %}
+                        <div class="table-responsive">
+                          <table class="table table-hover table-striped w-100" id="table-1">
+                            <thead>
+                              <tr class="text-center">
+                                <th>No</th>
+                                <th>Nama Resep</th>
+                                <th>Nilai Cosine</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for item in data: %}
+                                <tr>
+                                  <td> {{loop.index}} </td>
+                                  <td>{{item[0]}} </td>
+                                  <td>{{item[1]}} </td>
+                                
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                        
+                        {% endif %} 
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="section-header d-flex justify-content-between">
+          <h1>Perhitungan Cosine Similarity</h1>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Rumus</h4>
+                </div>
+                <div class="card-body">
+                  <img src="{{url_for('static', filename='assets/img/rumus cosine.jpg')}}" alt="logo" width="300">
+                </div>
+            </div>
+        </div>  
+        
+
+        <div class="row">
+          {% if values %}
+          <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                  <h4>Perhitungan Cosing Similarity untuk resep {{values['nama_resep']}} </h4>
+                </div>
+                <div class="card-body">
+                  <ul>
+                    <li>{{values['X_list']}} . {{values['Y_list']}} / || {{values['X_list']}} || * || {{values['Y_list']}} || </li>
+                    <li>{{values['dot']}} / || {{values['X_list']}} || * || {{values['Y_list']}} || </li>
+                    <li>{{values['dot']}} / {{values['norm1']}} * {{values['norm2']}} </li>
+                    <li>{{values['dot']}} / {{values['normal']}} </li>
+                    <li>{{values['cosine']}}  atau {{values['ubah']}} </li>
+                    
+                  </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>  
+    </div>
+    </div>
+</section>
+{% include '/layout/_bottom.html' %}  
