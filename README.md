@@ -3,11 +3,12 @@
 
 
 ## Usage
+### 1. Create Virtual Environtment
 ```
-1. Create Virtual Environtment
 python -m venv name_of_env
-
-2. install depedency for project
+```
+### 2. install depedency for project
+```
 pip install -r requirements.txt
 ```
 
