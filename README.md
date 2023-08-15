@@ -11,6 +11,10 @@ python -m venv name_of_env
 ```
 pip install -r requirements.txt
 ```
+### 3. run  project
+```
+python app.py
+```
 
 ## Problem
 
