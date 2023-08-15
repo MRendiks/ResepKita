@@ -1,6 +1,12 @@
 # ResepKita
 > ResepKita Native Application built using the Kotlin programming language and python using Flask. This application was created with the aim of making it easier for search a food recipe and its ingredients easily and buy all food ingredients just from scanned food image.
 
+
+## Usage
+```
+pip install -r requirements.txt
+```
+
 ## Problem
 
 What are the problems that made us make this application?
